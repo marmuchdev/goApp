@@ -20,15 +20,15 @@ stages:
     displayName: 'Build'
     pool:
       vmImage: 'ubuntu-latest'
-    steps: 
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'Docker ACR'
-        repository: $(imageRepository)
-        command: 'buildAndPush'
-        Dockerfile: $(dockerfilePath)
-        tags: |
-                 $tag
+    # steps: 
+    # # - task: Docker@2
+    # #   inputs:
+    # #     containerRegistry: 'Docker ACR'
+    # #     repository: $(imageRepository)
+    # #     command: 'buildAndPush'
+    # #     Dockerfile: $(dockerfilePath)
+    # #     tags: |
+    # #              $tag
 
 variables:
   dockerRegistryServiceConnection: 'Docker ACR'
