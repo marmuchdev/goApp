@@ -27,8 +27,8 @@ stages:
         repository: $(imageRepository)
         command: 'buildAndPush'
         Dockerfile: $(dockerfilePath)
-        tags: |
-                 $tag
+        # tags: |
+        #          $tag
 
 variables:
   dockerRegistryServiceConnection: 'Docker ACR'
