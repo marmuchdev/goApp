@@ -35,14 +35,15 @@ stages:
   jobs:
   - job: Test
     displayName: 'Run tests'
+    pool:
+      vmImage: 'ubuntu-latest'  
     steps:
     - script: |
         echo "Running tests..."
         # Run the Go tests from the project directory
-        cd /app
         go test ./...
       displayName: 'Run tests'
-      
+
 variables:
   dockerRegistryServiceConnection: 'Docker ACR'
   imageRepository: 'commodore/marcinmucha-goapp' #eg 'amiga/dan-webb-example-app'
