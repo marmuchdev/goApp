@@ -1,4 +1,4 @@
-FROM golang:1.22.3-alpine3.19
+FROM golang:1.23.0-alpine3.19
 
 # Create a directory for our files
 RUN mkdir /app
