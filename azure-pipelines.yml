@@ -27,12 +27,25 @@ stages:
         repository: $(imageRepository)
         command: 'buildAndPush'
         Dockerfile: $(dockerfilePath)
-        # tags: |
-        #          $tag
-
+        tags: |
+          $(tag)
+- stage: Test
+  displayName: 'Run tests'
+  dependsOn: Build
+  jobs:
+  - job: Test
+    displayName: 'Run tests'
+    steps:
+    - script: |
+        echo "Running tests..."
+        # Run the Go tests from the project directory
+        cd /app
+        go test ./...
+      displayName: 'Run tests'
+      
 variables:
   dockerRegistryServiceConnection: 'Docker ACR'
   imageRepository: 'commodore/marcinmucha-goapp' #eg 'amiga/dan-webb-example-app'
   containerRegistry: 'acrbjssacademy.azurecr.io' # eg 'acrbjssacademy.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  #tag: '$(Build.BuildId)'
+  tag: '$(Build.BuildId)'
